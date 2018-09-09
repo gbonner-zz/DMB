@@ -6,8 +6,8 @@ class Entity:
     def load(self):
         raise NotImplementedError
 
-    def constructDeezerApiUrl(self):
+    def _constructDeezerApiUrl(self):
         raise NotImplementedError
 
-    def getDeezerResponse(self):
+    def _getDeezerResponse(self):
         raise NotImplementedError

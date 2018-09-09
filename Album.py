@@ -1,13 +1,13 @@
-from DMB.Entity import Entity
-from DMB.Track import Track
-from DMB.DeezerApiTools import *
+from Entity import Entity
+from Track import Track
+from DeezerApiTools import *
 import requests
 
 
 class Album(Entity):
 
     def __init__(self, id):
-        super(Album, self).__init__(id)
+        super().__init__(id)
         self.isLoaded = False
         self.id = str(id)
         self.artist = None
@@ -16,7 +16,7 @@ class Album(Entity):
         self._response = None
 
     def load(self):
-        self.getDeezerResponse()
+        self._getDeezerResponse()
         self.artist = self._response['contributors'][0]['name']
         self.title = self._response['title']
         self.tracks = []
@@ -38,14 +38,9 @@ class Album(Entity):
         for t in self.tracks:
             t.print()
 
-    def getDeezerResponse(self):
+    def _getDeezerResponse(self):
         url = 'http://api.deezer.com/album/' + self.id
         rawResponse = requests.get(url).content
         self._response = loadResponse(rawResponse)
 
 
-a = Album(64197322)
-a.loadTracks()
-a.print()
-a.getDeezerResponse()
-print('Awesome. Thanks Deezer!')
