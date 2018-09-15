@@ -4,7 +4,7 @@ from Album import *
 
 def albumLookup():
     string = input("Enter ID or link: ")
-    id = ""
+    id: str = ""
     try:
         id = parseId(string)
     except InvalidInputException:
@@ -16,10 +16,6 @@ def albumLookup():
 
 def promptMode():
     mode = ""
-    while mode.lower() not in ["s", "i"]:
-        mode = input("Lookup by album ID [I], or search [S]: ")
-    if mode.lower() == "i":
-        albumLookup()
-
+    albumLookup()
 
 promptMode()

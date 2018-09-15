@@ -1,5 +1,6 @@
 import json
 import re
+from typing import Dict
 
 NUMBER_ONLY = '^[0-9]+$'
 LINK_EXTRACT = 'https*:\/\/[a-z]*\.deezer\.com[\/a-z]+\/([0-9]+)$'
@@ -9,11 +10,12 @@ class InvalidInputException(Exception):
     def __init__(self, message=""):
         self.message = message
 
-def constructDeezerApiUrl(type, id):
+
+def constructDeezerApiUrl(type, id) -> str:
     return 'https://api.deezer.com/' + type + '/' + id
 
 
-def loadResponse(jsonBlob):
+def loadResponse(jsonBlob) -> Dict[str, any]:
     return json.loads(jsonBlob)
 
 
